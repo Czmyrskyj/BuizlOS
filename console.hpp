@@ -18,7 +18,9 @@
 class console{
 	public:
 		void out(const char* txt, unsigned char fg, unsigned char bg);
-		void put_char(char c, unsigned char fg, unsigned char bg);
+		void out_in_pos(const char* txt, unsigned char fg, unsigned char bg, int x, int y);
+		void out_in_pos(int txt, unsigned char fg, unsigned char bg, int x, int y);
+		void put_char(char c, unsigned char fg, unsigned char bg, char* input_char, int& input_len);
 		void clear();
 		int strcmp(const char* txt_f, const char* txt_s);
 		int strncmp(const char* txt_f, const char* txt_s, size_t n);
@@ -48,7 +50,10 @@ class console{
 		static void cmd_echo(console* self, const char* args);
 		static void cmd_sysinfo(console* self, const char* args);	
 		static void cmd_reboot(console* self, const char* args);
+		static void cmd_shutdown(console* self, const char* args);
+		static void cmd_wf(console* self, const char* args);
 		static command commands[];
 		void execute_cmd(const char* cmdline);
+		void scroll();
 };
 #endif

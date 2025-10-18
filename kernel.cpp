@@ -14,12 +14,16 @@ extern "C" void kernel_main(void){
 			char cur_act_key_char_temp[2];
 			cur_act_key_char_temp[0] = cur_act_key_char;
 			cur_act_key_char_temp[1] = '\0';
-			std.put_char(*cur_act_key_char_temp, std.defcol, BLACK_F);
+			std.put_char(*cur_act_key_char_temp, std.defcol, BLACK_F, input_buffer, input_buffer_len);
 		}
 		if (cur_act_key_char && cur_act_key_char != '\n' && cur_act_key_char != '\b'){
 			if (input_buffer_len < sizeof(input_buffer) - 1){
 				input_buffer[input_buffer_len++] = cur_act_key_char;
 			}
+		}
+		if (std.row >= 25){
+			std.scroll();
+			std.row = 24;
 		}
 		if (cur_act_key_char == '\n'){
 		 input_buffer[input_buffer_len] = '\0';  
